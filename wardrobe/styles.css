@@ -1,0 +1,305 @@
+/* ============================================
+   THE RACK — personal wardrobe catalog
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap');
+
+:root{
+  --ink:        #17161a;
+  --ink-soft:   #2a282e;
+  --paper:      #f7f1e4;
+  --paper-alt:  #efe6d3;
+  --card:       #fbf7ee;
+  --line:       #d9cdac;
+  --olive:      #6e6b4e;
+  --rust:       #7c3430;
+  --denim:      #3b5170;
+  --text:       #201d18;
+  --text-soft:  #6b6558;
+  --text-on-ink:#f2ecdd;
+  --radius:     10px;
+}
+
+*{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  margin:0;
+  background: var(--paper);
+  color: var(--text);
+  font-family: 'Work Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container{
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ---------- Header ---------- */
+
+header.hero{
+  background: var(--ink);
+  color: var(--text-on-ink);
+  padding: 72px 0 56px;
+  border-bottom: 6px solid var(--rust);
+}
+
+.eyebrow{
+  font-family:'Oswald', sans-serif;
+  font-size: 13px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--rust);
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.eyebrow::before{
+  content:"";
+  width: 26px;
+  height: 2px;
+  background: var(--rust);
+  display:inline-block;
+}
+
+h1.title{
+  font-family:'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: clamp(48px, 8vw, 92px);
+  letter-spacing: .01em;
+  line-height: .95;
+  margin: 0 0 20px;
+  text-transform: uppercase;
+}
+
+.hero p.lede{
+  max-width: 560px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #cfc7b3;
+  margin: 0 0 6px;
+}
+
+.hero .hint{
+  font-size: 13px;
+  color: #8f8874;
+  margin-top: 14px;
+}
+
+.hero .hint span{
+  border-bottom: 1px dashed #6a6452;
+}
+
+/* ---------- Sections ---------- */
+
+.section{
+  padding: 64px 0 20px;
+}
+
+.section-head{
+  display:flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 2px solid var(--text);
+  padding-bottom: 14px;
+  margin-bottom: 34px;
+}
+
+.section-head h2{
+  font-family:'Oswald', sans-serif;
+  font-size: 30px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.section-head .count{
+  font-family:'Oswald', sans-serif;
+  font-size: 13px;
+  letter-spacing: .12em;
+  color: var(--text-soft);
+  text-transform: uppercase;
+}
+
+.section-note{
+  font-size: 14px;
+  color: var(--text-soft);
+  margin: -20px 0 34px;
+  max-width: 560px;
+}
+
+/* ---------- Grid & Cards ---------- */
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 26px;
+}
+
+.card{
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.card:hover{
+  transform: translateY(-7px) rotate(-0.4deg);
+  box-shadow: 0 22px 34px rgba(23,22,26,.28);
+  z-index: 4;
+}
+
+.tag{
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 3;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  padding: 5px 9px;
+  border-radius: 3px;
+  transform: rotate(-3deg);
+  box-shadow: 0 3px 6px rgba(0,0,0,.25);
+}
+
+.tag.bottom{ color: var(--denim); }
+.tag.top{ color: var(--olive); }
+
+.media{
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  background: var(--paper-alt);
+}
+
+.media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.96) contrast(1.03);
+  transition: transform .6s ease, filter .5s ease;
+}
+
+.card:hover .media img{
+  transform: scale(1.07);
+  filter: saturate(0.9) contrast(1.05) brightness(.5);
+}
+
+.pairs-panel{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px;
+  background: linear-gradient(180deg, rgba(23,22,26,0) 28%, rgba(23,22,26,.72) 58%, rgba(23,22,26,.94) 100%);
+  transform: translateY(100%);
+  transition: transform .4s cubic-bezier(.2,.8,.2,1);
+}
+
+.card:hover .pairs-panel{
+  transform: translateY(0);
+}
+
+.pairs-label{
+  font-family:'Oswald', sans-serif;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #e8955f;
+  color: #e79a72;
+}
+
+.pairs-list{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pair-chip{
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.18);
+  padding: 4px 10px 4px 4px;
+  border-radius: 999px;
+}
+
+.pair-chip img{
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,.4);
+}
+
+.pair-chip span{
+  font-size: 12px;
+  color: var(--text-on-ink);
+  white-space: nowrap;
+}
+
+.info{
+  padding: 14px 16px 18px;
+  border-top: 1px solid var(--line);
+}
+
+.info h3{
+  font-family:'Oswald', sans-serif;
+  font-size: 16px;
+  letter-spacing: .01em;
+  margin: 0 0 4px;
+  text-transform: uppercase;
+}
+
+.info p{
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+/* ---------- Footer ---------- */
+
+footer{
+  margin-top: 60px;
+  padding: 34px 0 60px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+footer p{
+  font-family:'Oswald', sans-serif;
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+/* ---------- Touch fallback ---------- */
+
+@media (hover: none){
+  .pairs-panel{ transform: translateY(0); }
+  .media img{ filter: saturate(0.9) contrast(1.05) brightness(.62); }
+  .card:hover{ transform:none; }
+}
+
+@media (max-width: 560px){
+  .container{ padding: 0 18px; }
+  header.hero{ padding: 52px 0 40px; }
+  .section{ padding: 44px 0 10px; }
+}
